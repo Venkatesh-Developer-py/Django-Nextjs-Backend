@@ -67,12 +67,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # 🌍 CORS (Frontend connect)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# 🗄️ DATABASE (Railway auto detect PostgreSQL)
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600,
-        ssl_require=False
+    'default': dj_database_url.parse(
+        os.environ.get("DATABASE_URL")
     )
 }
 
